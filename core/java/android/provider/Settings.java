@@ -4875,6 +4875,12 @@ public final class Settings {
                 "double_tap_sleep_lockscreen";
 
         /**
+	 ** What to show in network traffic indicator in statusbar
+	 ** @hide
+	 **/
+        public static final String NETWORK_TRAFFIC_TYPE = "network_traffic_type";
+
+        /**
          * Keys we no longer back up under the current schema, but want to continue to
          * process when restoring historical backup datasets.
          *
@@ -5001,6 +5007,9 @@ public final class Settings {
             PRIVATE_SETTINGS.add(SHOW_FOURG);
             PRIVATE_SETTINGS.add(DOUBLE_TAP_SLEEP_GESTURE);
             PRIVATE_SETTINGS.add(DOUBLE_TAP_SLEEP_LOCKSCREEN);
+            PRIVATE_SETTINGS.add(NETWORK_TRAFFIC_STATE);
+            PRIVATE_SETTINGS.add(NETWORK_TRAFFIC_TYPE);
+            PRIVATE_SETTINGS.add(NETWORK_TRAFFIC_AUTOHIDE_THRESHOLD);
         }
 
         /**
