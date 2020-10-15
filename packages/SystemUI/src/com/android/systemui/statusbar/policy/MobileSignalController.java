@@ -488,7 +488,7 @@ public class MobileSignalController extends SignalController<
         int voiceNetTye = getVoiceNetworkType();
         if ( (mCurrentState.voiceCapable || mCurrentState.videoCapable)
                 &&  mCurrentState.imsRegistered && mVoLTEicon  ) {
-            resId = R.drawable.ic_volte;
+            resId = R.drawable.ic_volte_miui;
         }else if ( (mTelephonyDisplayInfo.getNetworkType() == TelephonyManager.NETWORK_TYPE_LTE
                         || mTelephonyDisplayInfo.getNetworkType() == TelephonyManager.NETWORK_TYPE_LTE_CA)
                     && voiceNetTye  == TelephonyManager.NETWORK_TYPE_UNKNOWN) {
