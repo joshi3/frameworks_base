@@ -3,23 +3,20 @@ package com.android.systemui.statusbar.info;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Typeface;
-import android.util.AttributeSet;
 import android.os.AsyncTask;
+import android.provider.Settings;
 import android.telephony.SubscriptionManager;
 import android.text.BidiFormatter;
 import android.text.format.Formatter;
 import android.text.format.Formatter.BytesResult;
+import android.util.AttributeSet;
 import android.widget.TextView;
-import android.provider.Settings;
-import android.view.View;
 
-import com.android.internal.util.du.Utils;
+import com.android.internal.util.derp.DerpUtils;
+import com.android.settingslib.net.DataUsageController;
 import com.android.systemui.Dependency;
 import com.android.systemui.R;
 import com.android.systemui.statusbar.policy.NetworkController;
-import com.android.systemui.statusbar.policy.NetworkController.SignalCallback;
-import com.android.settingslib.net.DataUsageController;
 
 public class DataUsageView extends TextView {
 
@@ -40,9 +37,8 @@ public class DataUsageView extends TextView {
 
         if ((isDataUsageEnabled() == 0) && this.getText().toString() != "") {
             setText("");
-        }
-        if (isDataUsageEnabled() != 0) {
-            if(shouldUpdateData) {
+        } else if (isDataUsageEnabled() != 0) {
+            if (shouldUpdateData) {
                 shouldUpdateData = false;
                 AsyncTask.execute(new Runnable() {
                     @Override
@@ -60,10 +56,10 @@ public class DataUsageView extends TextView {
         mobileDataController.setSubscriptionId(
             SubscriptionManager.getDefaultDataSubscriptionId());
         final DataUsageController.DataUsageInfo info = isDataUsageEnabled() == 1 ?
-                (Utils.isWiFiConnected(mContext) ?
+                (DerpUtils.isWiFiConnected(mContext) ?
                         mobileDataController.getDailyWifiDataUsageInfo()
                         : mobileDataController.getDailyDataUsageInfo())
-                : (Utils.isWiFiConnected(mContext) ?
+                : (DerpUtils.isWiFiConnected(mContext) ?
                         mobileDataController.getWifiDataUsageInfo()
                         : mobileDataController.getDataUsageInfo());
         formatedinfo = formatDataUsage(info.usageLevel) + " ";
